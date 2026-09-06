@@ -288,6 +288,23 @@ class WROScoreViewModel(application: Application) : AndroidViewModel(application
             repository.insertScore(score)
             clearForm()
             setScreen(Screen.History)
+            try {
+                com.example.data.ApiClient.service.postScore(
+                    com.example.data.LeaderboardEntry(
+                        team = currentTeam,
+                        round = currentRound,
+                        total = listOf(
+                            minOf(score.visitorsUpright*10+score.visitorsPartial*5,40),
+                            minOf(score.redTowerComplete*15+score.redTowerPartial*10,30),
+                            minOf(score.yellowTowerComplete*25+score.yellowTowerPartial*15,50),
+                            minOf(score.artefactsComplete*15+score.artefactsPartial*5,60),
+                            minOf(score.dirtCleaned*2,20),
+                            minOf(score.barrierBonus*10,20)+score.parrotBonus*10
+                        ).sum(),
+                        timeSec = seconds.toString()
+                    )
+                )
+            } catch (e: Exception) { /* ไม่มีเน็ตก็ไม่เป็นไร บันทึกในเครื่องสำเร็จแล้ว */ }
         }
     }
     
