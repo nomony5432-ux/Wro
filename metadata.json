@@ -1,0 +1,6 @@
+{
+  "name": "WRO 2026 Scorer",
+  "description": "Scorekeeper and timer application for WRO RoboMission Junior 2026 - Heritage Heroes",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
